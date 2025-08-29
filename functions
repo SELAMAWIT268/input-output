@@ -1,1 +1,63 @@
+# ================================
+# 1) Function that takes a number and returns its square
+# ================================
+def square(n):
+    return n * n
 
+print("Square of 6 =", square(6))
+
+
+# ================================
+# 2) Function that checks if a string is a palindrome
+# ================================
+def is_palindrome(s):
+    return s == s[::-1]
+
+print("Is 'madam' a palindrome?", is_palindrome("madam"))
+print("Is 'hello' a palindrome?", is_palindrome("hello"))
+
+
+# ================================
+# 3) Decorator that logs execution time
+# ================================
+import time
+
+def log_time(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"Execution time: {end - start:.5f} seconds")
+        return result
+    return wrapper
+
+@log_time
+def slow_function():
+    time.sleep(2)   # simulate a slow task
+    return "Task Done!"
+
+print(slow_function())
+
+
+# ================================
+# 4) Generator function for infinite sequence of primes
+# ================================
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def prime_generator():
+    num = 2
+    while True:
+        if is_prime(num):
+            yield num
+        num += 1
+
+# Example usage: print first 10 primes
+primes = prime_generator()
+for _ in range(10):
+    print(next(primes))
