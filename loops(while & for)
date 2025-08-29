@@ -1,1 +1,144 @@
+# ================================
+# 1) Print numbers from 1 to 10 using a for loop
+# ================================
+print("1) Numbers 1 to 10 (for loop):")
+for i in range(1, 11):
+    print(i)
+print("-" * 30)
 
+# ================================
+# 2) Multiplication table of a given number using a while loop
+# ================================
+print("2) Multiplication Table:")
+num = int(input("Enter a number for multiplication table: "))
+i = 1
+while i <= 10:
+    print(f"{num} x {i} = {num * i}")
+    i += 1
+print("-" * 30)
+
+# ================================
+# 3) Pyramid pattern using *
+# ================================
+print("3) Pyramid Pattern:")
+n = int(input("Enter height of pyramid: "))
+for i in range(1, n + 1):
+    print("*" * i)
+print("-" * 30)
+
+# ================================
+# 4) Prime numbers up to a given number
+# ================================
+print("4) Prime Numbers:")
+limit = int(input("Find primes up to: "))
+for n in range(2, limit + 1):
+    is_prime = True
+    for j in range(2, int(n**0.5) + 1):
+        if n % j == 0:
+            is_prime = False
+            break
+    if is_prime:
+        print(n, end=" ")
+print("\n" + "-" * 30)
+
+# ================================
+# 5) Recursive factorial function
+# ================================
+print("5) Factorial (recursive):")
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+print("Factorial of 5 =", factorial(5))
+print("-" * 30)
+
+# ================================
+# 6) Function with *args to return sum
+# ================================
+print("6) Function with *args (sum):")
+def add_numbers(*args):
+    return sum(args)
+
+print("Sum of (1,2,3,4,5):", add_numbers(1,2,3,4,5))
+print("-" * 30)
+
+# ================================
+# 7) Loop skip 5 using continue
+# ================================
+print("7) Skip number 5 (continue):")
+for i in range(1, 11):
+    if i == 5:
+        continue
+    print(i)
+print("-" * 30)
+
+# ================================
+# 8) Loop break when number 7 appears
+# ================================
+print("8) Stop at 7 (break):")
+for i in range(1, 11):
+    if i == 7:
+        break
+    print(i)
+print("-" * 30)
+
+# ================================
+# 9) Tower of Hanoi problem
+# ================================
+print("9) Tower of Hanoi:")
+def tower_of_hanoi(n, source, target, auxiliary):
+    if n == 1:
+        print(f"Move disk 1 from {source} to {target}")
+        return
+    tower_of_hanoi(n-1, source, auxiliary, target)
+    print(f"Move disk {n} from {source} to {target}")
+    tower_of_hanoi(n-1, auxiliary, target, source)
+
+tower_of_hanoi(3, 'A', 'C', 'B')
+print("-" * 30)
+
+# ================================
+# 10) Tic-Tac-Toe Game
+# ================================
+print("10) Tic Tac Toe Game:")
+
+board = [" "] * 9
+
+def print_board():
+    for i in range(0, 9, 3):
+        print(board[i] + "|" + board[i+1] + "|" + board[i+2])
+        if i < 6:
+            print("-+-+-")
+
+def check_winner(symbol):
+    wins = [(0,1,2),(3,4,5),(6,7,8),
+            (0,3,6),(1,4,7),(2,5,8),
+            (0,4,8),(2,4,6)]
+    return any(board[a] == board[b] == board[c] == symbol for a,b,c in wins)
+
+player = "X"
+for turn in range(9):
+    print_board()
+    move = int(input(f"Player {player}, choose position (0-8): "))
+    if board[move] == " ":
+        board[move] = player
+        if check_winner(player):
+            print_board()
+            print(f"🎉 Player {player} wins!")
+            break
+        player = "O" if player == "X" else "X"
+else:
+    print("It's a draw!")
+
+print("-" * 30)
+
+# ================================
+# 11) Function that returns square of a number
+# ================================
+print("11) Square Function:")
+def square(n):
+    return n * n
+
+print("Square of 6 =", square(6))
+print("-" * 30)
